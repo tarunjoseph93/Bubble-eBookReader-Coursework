@@ -20,4 +20,8 @@
     <string name="add">Add now</string>
     <string name="cat_placeholder">Category goes here</string>
     <string name="cat_search_hint">Search for your category</string>
+    <string name="add_pdf_admin">Add your book here</string>
+    <string name="pdf_title_hint_admin">Title of the book</string>
+    <string name="pdf_desc_hint_admin">Description of the book</string>
+    <string name="pdf_category_hint_admin">Your book\'s category</string>
 </resources>

@@ -68,6 +68,13 @@ public class AdminDashboard extends AppCompatActivity {
                 startActivity(new Intent(AdminDashboard.this, AddBookCategory.class));
             }
         });
+
+        bind.catPdfAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminDashboard.this, PdfAddPage.class));
+            }
+        });
     }
 
     private void loadAllCategories() {
