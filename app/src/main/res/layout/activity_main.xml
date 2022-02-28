@@ -24,17 +24,17 @@
         android:layout_marginTop="10dp"
         android:text="@string/welcome"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="24sp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/lgnBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/withoutLgnBtn"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_login_button"
         android:text="@string/login_button"
-        android:textColor="@color/background_white"
-        android:background="@drawable/shape_login_button"/>
+        android:textColor="@color/background_white" />
 
     <Button
         android:id="@+id/withoutLgnBtn"

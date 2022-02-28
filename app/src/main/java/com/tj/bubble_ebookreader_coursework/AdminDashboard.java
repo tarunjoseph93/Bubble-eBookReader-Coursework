@@ -31,6 +31,13 @@ public class AdminDashboard extends AppCompatActivity {
                 userCheck();
             }
         });
+
+        bind.catAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminDashboard.this, AddBookCategory.class));
+            }
+        });
     }
 
     private void userCheck() {

@@ -45,6 +45,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/highlight_bar"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="225dp">
@@ -145,17 +146,17 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/registerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/confirmPasswordInputLayout"
-                android:layout_marginTop="50dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="20dp"
-                android:text="@string/register_button"
                 android:background="@drawable/shape_login_button"
-                android:textColor="@color/background_white"/>
+                android:text="@string/register_button"
+                android:textColor="@color/background_white" />
 
         </RelativeLayout>
 

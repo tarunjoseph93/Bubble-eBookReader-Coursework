@@ -36,6 +36,8 @@ public class LoginPage extends AppCompatActivity {
         bind = ActivityLoginPageBinding.inflate(getLayoutInflater());
         setContentView(bind.getRoot());
 
+        fireAuth = FirebaseAuth.getInstance();
+
         proDia = new ProgressDialog(this);
         proDia.setTitle("Gotta wait sometime, buddy!");
         proDia.setCanceledOnTouchOutside(false);
@@ -83,6 +85,7 @@ public class LoginPage extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        proDia.dismiss();
                         Toast.makeText(LoginPage.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

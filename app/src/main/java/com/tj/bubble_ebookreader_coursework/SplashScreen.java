@@ -55,6 +55,10 @@ public class SplashScreen extends AppCompatActivity {
                                 startActivity(new Intent(SplashScreen.this, AdminDashboard.class));
                                 finish();
                             }
+                            else {
+                                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                                finish();
+                            }
                         }
 
                         @Override

@@ -15,4 +15,7 @@
     <string name="admin_head">Administrator Dashboard</string>
     <string name="example_email">johndoe@email.com</string>
     <string name="userDashboard_head">User Dashboard</string>
+    <string name="cat_add">Add a book category</string>
+    <string name="cat_title_hint">Add your category title here</string>
+    <string name="add">Add now</string>
 </resources>
