@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">The Bubble</string>
+    <string name="welcome">Welcome to The Bubble!</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="without_login_button">Continue as Guest</string>
+    <string name="please_login">Login to your account</string>
+    <string name="register">Register your details</string>
+    <string name="email_hint">Enter your email ID here...</string>
+    <string name="password_hint">Enter your password here...</string>
+    <string name="forgot_password">Forgot your password? Click here.</string>
+    <string name="new_user_login">Don\'t have an account? <b>Sign up here!</b></string>
+    <string name="register_name">Enter your full name...</string>
+    <string name="confirm_password">Confirm your password...</string>
+    <string name="admin_head">Administrator Dashboard</string>
+    <string name="example_email">johndoe@email.com</string>
+    <string name="userDashboard_head">User Dashboard</string>
+</resources>

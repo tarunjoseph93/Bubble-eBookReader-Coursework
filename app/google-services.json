@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "315213061520",
+    "project_id": "bubble-app-6bd82",
+    "storage_bucket": "bubble-app-6bd82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315213061520:android:d0ea07d193f515568fe715",
+        "android_client_info": {
+          "package_name": "com.tj.bubble_ebookreader_coursework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315213061520-lat9bla38vrihj3gr51ndql5jqe6m5vi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs9Ch6V7N9y2x-rllirKKafpKuJMMDtDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315213061520-lat9bla38vrihj3gr51ndql5jqe6m5vi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
