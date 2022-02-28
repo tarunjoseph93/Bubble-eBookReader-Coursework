@@ -76,6 +76,7 @@ public class AddBookCategory extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+
                         proDia.dismiss();
                         Toast.makeText(AddBookCategory.this, "Your category has been added successfully!", Toast.LENGTH_SHORT).show();
                     }

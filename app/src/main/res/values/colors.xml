@@ -11,4 +11,5 @@
     <color name="standard_bubble_color">#7030A0</color>
     <color name="transparent">#C5C5C5</color>
     <color name="gray_custom">#777777</color>
+    <color name="gray_custom2">#EDEDED</color>
 </resources>
