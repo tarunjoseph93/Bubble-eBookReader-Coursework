@@ -33,4 +33,10 @@
     <string name="book_search_hint">Search for your book</string>
     <string name="book_edit_head">Edit your book here</string>
     <string name="edit">Edit Now</string>
+    <string name="book_details_head">Your book\'s details</string>
+    <string name="not_available">N/A</string>
+    <string name="date">Date Uploaded</string>
+    <string name="book_size">Book Size</string>
+    <string name="views">Views</string>
+    <string name="download_count">Download Count</string>
 </resources>

@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
+import com.tj.bubble_ebookreader_coursework.BookDetailPage;
 import com.tj.bubble_ebookreader_coursework.MyApplication;
 import com.tj.bubble_ebookreader_coursework.PdfEditPage;
 import com.tj.bubble_ebookreader_coursework.databinding.CustomRowsForPdfAdminBinding;
@@ -90,6 +91,15 @@ public class Book_Admin_Adapter extends RecyclerView.Adapter<Book_Admin_Adapter.
             @Override
             public void onClick(View view) {
                 additionalOptionsList(modPdf,holder);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(con, BookDetailPage.class);
+                intent.putExtra("bookId", pdfId);
+                con.startActivity(intent);
             }
         });
 

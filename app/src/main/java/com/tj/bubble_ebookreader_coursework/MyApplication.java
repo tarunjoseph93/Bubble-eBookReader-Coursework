@@ -31,6 +31,7 @@ import com.tj.bubble_ebookreader_coursework.adapters.Book_Admin_Adapter;
 import com.tj.bubble_ebookreader_coursework.models.Pdf_Model;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class MyApplication extends Application {
@@ -154,6 +155,33 @@ public class MyApplication extends Application {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String cat = "" + snapshot.child("category").getValue();
                         bookCatText.setText(cat);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public static void viewCountIncrement(String bookId) {
+        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Books");
+        dRef.child(bookId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String viewsCount = "" + snapshot.child("viewsCount").getValue();
+                        if(viewsCount.equals("") || viewsCount.equals("null")) {
+                            viewsCount = "0";
+                        }
+
+                        long newViewsCount = Long.parseLong(viewsCount) + 1;
+                        HashMap<String, Object> hMap = new HashMap<>();
+                        hMap.put("viewsCount", newViewsCount);
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+                        ref.child(bookId)
+                                .updateChildren(hMap);
                     }
 
                     @Override
