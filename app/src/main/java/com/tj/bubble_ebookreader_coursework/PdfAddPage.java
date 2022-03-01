@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,7 +29,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.tj.bubble_ebookreader_coursework.databinding.ActivityPdfAddPageBinding;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,8 +39,9 @@ public class PdfAddPage extends AppCompatActivity {
     private static final String PDF_TAG = "PDF_TAG_ADD";
     private static final int PDF_CODE_PICK = 1000;
     private Uri customPdfUri = null;
-    private ArrayList<Category_Model> catList;
-    private String titleText = "", descText = "", catOptionsText = "";
+    private ArrayList<String> catTitleList, catIdList;
+    private String titleText = "", descText = "";
+    private String catIdSelected, catTitleSelected;
     private ProgressDialog proDia;
 
     @Override
@@ -88,7 +87,6 @@ public class PdfAddPage extends AppCompatActivity {
     private void validation() {
         titleText = bind.titleText.getText().toString().trim();
         descText = bind.descText.getText().toString().trim();
-        catOptionsText = bind.catOptionsText.getText().toString().trim();
 
         if(TextUtils.isEmpty(titleText)) {
             Toast.makeText(this, "Title field is empty!", Toast.LENGTH_SHORT).show();
@@ -96,7 +94,7 @@ public class PdfAddPage extends AppCompatActivity {
         else if(TextUtils.isEmpty(descText)) {
             Toast.makeText(this, "Description Field is empty!", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(catOptionsText)) {
+        else if(TextUtils.isEmpty(catTitleSelected)) {
             Toast.makeText(this, "Category Field is empty!", Toast.LENGTH_SHORT).show();
         }
         else if(customPdfUri == null) {
@@ -140,7 +138,7 @@ public class PdfAddPage extends AppCompatActivity {
         hMap.put("id", "" + timestamp);
         hMap.put("title", "" + titleText);
         hMap.put("description", "" + descText);
-        hMap.put("category", "" + catOptionsText);
+        hMap.put("categoryId", "" + catIdSelected);
         hMap.put("url", "" + uploadResult);
         hMap.put("timestamp", timestamp);
 
@@ -164,16 +162,19 @@ public class PdfAddPage extends AppCompatActivity {
 
     private void loadCategoryOptions() {
         Log.d(PDF_TAG, "loadingCategories: Loading all categories!");
-        catList = new ArrayList<>();
+        catTitleList = new ArrayList<>();
+        catIdList = new ArrayList<>();
         DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Categories");
         dRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                catList.clear();
+                catTitleList.clear();
+                catIdList.clear();
                 for(DataSnapshot dSnap : snapshot.getChildren()) {
-                    Category_Model catMod = dSnap.getValue(Category_Model.class);
-                    catList.add(catMod);
-                    Log.d(PDF_TAG, "Fetching Data: " + catMod.getCategory());
+                    String catId = "" + dSnap.child("id").getValue();
+                    String catTitleText = "" + dSnap.child("category").getValue();
+                    catIdList.add(catId);
+                    catTitleList.add(catTitleText);
                 }
             }
 
@@ -186,17 +187,18 @@ public class PdfAddPage extends AppCompatActivity {
 
     private void pickCatOptions() {
         Log.d(PDF_TAG,"Picking Options List: display of Category Options List");
-        String[] catArray = new String[catList.size()];
-        for(int i = 0; i < catList.size(); i++) {
-            catArray[i] = catList.get(i).getCategory();
+        String[] catArray = new String[catTitleList.size()];
+        for(int i = 0; i < catTitleList.size(); i++) {
+            catArray[i] = catTitleList.get(i);
         }
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
         ad.setTitle("Choose your category: ").setItems(catArray, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String cat = catArray[i];
-                bind.catOptionsText.setText(cat);
-                Log.d(PDF_TAG,"Category Picked: " + cat);
+                catIdSelected = catIdList.get(i);
+                catTitleSelected = catTitleList.get(i);
+                bind.catOptionsText.setText(catTitleSelected);
+                Log.d(PDF_TAG,"Category Picked: " + catIdSelected + " " + catTitleSelected);
             }
         }).show();
     }

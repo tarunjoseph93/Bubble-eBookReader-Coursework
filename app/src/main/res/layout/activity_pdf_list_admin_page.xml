@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".PdfListAdminPage">
+
+    <RelativeLayout
+        android:id="@+id/bookHighlightBar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/shape_highlight_bar_2">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_white"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/bookTitleHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/book_title_head"
+            android:textColor="@color/background_white"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bookSubTitleHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookTitleHead"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:text="@string/book_cat_placeholder"
+            android:textColor="@color/background_white"/>
+
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/bookSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookHighlightBar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/background_white"
+        android:drawableStart="@drawable/ic_baseline_search_purple"
+        android:hint="@string/book_search_hint"
+        android:padding="10dp"
+        android:textColorHint="@color/gray_custom"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookListAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bookSearch"
+        android:layout_margin="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/custom_rows_for_pdf_admin"/>
+
+</RelativeLayout>

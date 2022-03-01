@@ -1,8 +1,9 @@
-package com.tj.bubble_ebookreader_coursework;
+package com.tj.bubble_ebookreader_coursework.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tj.bubble_ebookreader_coursework.PdfListAdminPage;
+import com.tj.bubble_ebookreader_coursework.filters.Category_Filter;
+import com.tj.bubble_ebookreader_coursework.models.Category_Model;
 import com.tj.bubble_ebookreader_coursework.databinding.CustomRowsForCategoryAdminBinding;
 
 import java.util.ArrayList;
@@ -69,6 +73,16 @@ public class Category_Adapter extends RecyclerView.Adapter<Category_Adapter.Cate
                                 dialogInterface.dismiss();
                             }
                         }).show();
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(con, PdfListAdminPage.class);
+                intent.putExtra("categoryId", id);
+                intent.putExtra("categoryTitle", cat);
+                con.startActivity(intent);
             }
         });
     }

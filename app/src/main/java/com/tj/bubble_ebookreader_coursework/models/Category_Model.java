@@ -1,8 +1,8 @@
-package com.tj.bubble_ebookreader_coursework;
+package com.tj.bubble_ebookreader_coursework.models;
 
 public class Category_Model {
-    String id,category,uid;
-    long timestamp;
+    public String id,category,uid;
+    public long timestamp;
 
     public Category_Model() {
     }

@@ -24,4 +24,13 @@
     <string name="pdf_title_hint_admin">Title of the book</string>
     <string name="pdf_desc_hint_admin">Description of the book</string>
     <string name="pdf_category_hint_admin">Your book\'s category</string>
+    <string name="book_title_placeholder">Title of the book</string>
+    <string name="book_desc_placeholder">Description of the book</string>
+    <string name="book_cat_placeholder">Category of the book</string>
+    <string name="book_size_placeholder">5MB</string>
+    <string name="book_date_placeholder">DD/MM/YYYY</string>
+    <string name="book_title_head">Books</string>
+    <string name="book_search_hint">Search for your book</string>
+    <string name="book_edit_head">Edit your book here</string>
+    <string name="edit">Edit Now</string>
 </resources>

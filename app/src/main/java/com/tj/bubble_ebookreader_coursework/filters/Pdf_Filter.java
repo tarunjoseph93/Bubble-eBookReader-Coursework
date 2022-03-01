@@ -1,18 +1,22 @@
-package com.tj.bubble_ebookreader_coursework;
+package com.tj.bubble_ebookreader_coursework.filters;
 
 import android.widget.Filter;
 
+import com.tj.bubble_ebookreader_coursework.adapters.Book_Admin_Adapter;
+import com.tj.bubble_ebookreader_coursework.adapters.Category_Adapter;
+import com.tj.bubble_ebookreader_coursework.models.Category_Model;
+import com.tj.bubble_ebookreader_coursework.models.Pdf_Model;
+
 import java.util.ArrayList;
-import java.util.Locale;
 
-public class Category_Filter extends Filter {
+public class Pdf_Filter extends Filter {
 
-    ArrayList<Category_Model> filtList;
-    Category_Adapter cAdap;
+    ArrayList<Pdf_Model> filtList;
+    Book_Admin_Adapter bAdminAdap;
 
-    public Category_Filter(ArrayList<Category_Model> filtList, Category_Adapter cAdap) {
+    public Pdf_Filter(ArrayList<Pdf_Model> filtList, Book_Admin_Adapter bAdminAdap) {
         this.filtList = filtList;
-        this.cAdap = cAdap;
+        this.bAdminAdap = bAdminAdap;
     }
 
     @Override
@@ -20,9 +24,9 @@ public class Category_Filter extends Filter {
         FilterResults res = new FilterResults();
         if(charSequence != null && charSequence.length() > 0) {
             charSequence = charSequence.toString().toUpperCase();
-            ArrayList<Category_Model> filtMods = new ArrayList<>();
+            ArrayList<Pdf_Model> filtMods = new ArrayList<>();
             for(int i = 0; i < filtList.size(); i++) {
-                if(filtList.get(i).getCategory().toUpperCase().contains(charSequence)) {
+                if(filtList.get(i).getTitle().toUpperCase().contains(charSequence)) {
                     filtMods.add(filtList.get(i));
                 }
             }
@@ -38,7 +42,7 @@ public class Category_Filter extends Filter {
 
     @Override
     protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-        cAdap.catList = (ArrayList<Category_Model>)filterResults.values;
-        cAdap.notifyDataSetChanged();
+        bAdminAdap.pdfList = (ArrayList<Pdf_Model>)filterResults.values;
+        bAdminAdap.notifyDataSetChanged();
     }
 }

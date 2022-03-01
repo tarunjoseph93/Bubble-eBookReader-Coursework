@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".PdfEditPage">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_arrow_back_ios_new_purple"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        android:layout_margin="10dp"/>
+
+    <ImageView
+        android:id="@+id/bookIcon"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/bookicon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/book_edit_head"
+        android:textColor="@color/standard_bubble_color"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="25sp" />
+
+    <ScrollView
+        android:layout_marginTop="225dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_text_field"
+                    android:drawableStart="@drawable/ic_baseline_picture_as_pdf_purple"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/pdf_title_hint_admin"
+                    android:inputType="textPersonName|textCapWords"
+                    android:padding="10dp"
+                    android:textColor="@color/standard_bubble_color"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray_custom"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_below="@+id/titleInputLayout"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/descText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_text_field"
+                    android:drawableStart="@drawable/ic_baseline_picture_as_pdf_purple"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/pdf_desc_hint_admin"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:padding="10dp"
+                    android:textColor="@color/standard_bubble_color"
+                    android:textSize="16sp"
+                    android:textColorHint="@color/gray_custom"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/catOptionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descInputLayout"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_text_field"
+                android:drawableStart="@drawable/ic_baseline_category_purple"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_purple"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/pdf_category_hint_admin"
+                android:padding="10dp"
+                android:textColorHint="@color/gray_custom"
+                android:textSize="16sp"
+                android:textColor="@color/standard_bubble_color"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editPdfButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/catOptionsText"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_login_button"
+                android:text="@string/edit"
+                android:textColor="@color/background_white" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/highlight_bar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_highlight_bar"/>
+
+
+
+</RelativeLayout>
