@@ -39,4 +39,6 @@
     <string name="book_size">Book Size</string>
     <string name="views">Views</string>
     <string name="download_count">Download Count</string>
+    <string name="open_book">Open</string>
+    <string name="read_book">Read Book</string>
 </resources>

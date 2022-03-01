@@ -32,6 +32,15 @@ public class BookDetailPage extends AppCompatActivity {
 
         MyApplication.viewCountIncrement(bookId);
 
+        bind.bookOpenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(BookDetailPage.this, PdfViewPage.class);
+                intent1.putExtra("bookId", bookId);
+                startActivity(intent1);
+            }
+        });
+
         bind.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

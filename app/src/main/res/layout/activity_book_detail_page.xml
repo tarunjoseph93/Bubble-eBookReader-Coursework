@@ -36,6 +36,7 @@
 
     <ScrollView
         android:layout_below="@+id/bookDetailsHighlightBar"
+        android:layout_above="@+id/bookOpenButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp">
@@ -218,5 +219,15 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bookOpenButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:drawableTop="@drawable/ic_baseline_open_in_full_white"
+        android:text="@string/open_book"
+        android:textColor="@color/background_white"
+        android:background="@color/standard_bubble_color"/>
 
 </RelativeLayout>

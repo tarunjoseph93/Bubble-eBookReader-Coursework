@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_white"
-    tools:context=".PdfListAdminPage">
+    tools:context=".PdfViewPage">
 
     <RelativeLayout
-        android:id="@+id/bookHighlightBar"
+        android:id="@+id/readHighlightBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/shape_highlight_bar_2">
@@ -23,50 +22,39 @@
             android:layout_marginStart="10dp"/>
 
         <TextView
-            android:id="@+id/bookTitleHead"
+            android:id="@+id/readTitleHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="@string/book_title_head"
+            android:text="@string/read_book"
             android:textColor="@color/background_white"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/bookSubTitleHead"
+            android:id="@+id/readSubTitleHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/bookTitleHead"
+            android:layout_below="@+id/readTitleHead"
             android:layout_centerHorizontal="true"
             android:textSize="16sp"
-            android:text="@string/book_cat_placeholder"
+            android:text="@string/not_available"
             android:textColor="@color/background_white"/>
 
 
     </RelativeLayout>
-
-    <EditText
-        android:id="@+id/bookSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bookHighlightBar"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/background_white"
-        android:drawableStart="@drawable/ic_baseline_search_purple"
-        android:hint="@string/book_search_hint"
-        android:padding="10dp"
-        android:textColorHint="@color/gray_custom"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookListAdmin"
+    
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfRead"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/bookSearch"
-        android:layout_margin="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/custom_rows_for_pdf_admin"/>
+        android:layout_below="@+id/readHighlightBar"/>
+
+    <ProgressBar
+        android:id="@+id/progBarRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
