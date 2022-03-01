@@ -141,6 +141,8 @@ public class PdfAddPage extends AppCompatActivity {
         hMap.put("categoryId", "" + catIdSelected);
         hMap.put("url", "" + uploadResult);
         hMap.put("timestamp", timestamp);
+        hMap.put("viewsCount", 0);
+        hMap.put("downloadsCount", 0);
 
         DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Books");
         dRef.child("" + timestamp).setValue(hMap)

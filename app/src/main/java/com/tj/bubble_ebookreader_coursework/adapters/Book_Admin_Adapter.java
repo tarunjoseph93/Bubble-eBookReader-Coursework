@@ -71,15 +71,20 @@ public class Book_Admin_Adapter extends RecyclerView.Adapter<Book_Admin_Adapter.
         Pdf_Model modPdf = pdfList.get(position);
         String title = modPdf.getTitle();
         String desc = modPdf.getDescription();
+        String pdfUrl = modPdf.getUrl();
+        String pdfId = modPdf.getId();
+        String catId = modPdf.getCategoryId();
         long timestamp = modPdf.getTimestamp();
         String dateFormat = MyApplication.timestampFormat(timestamp);
         holder.bookTitleText.setText(title);
         holder.bookDescText.setText(desc);
         holder.bookDate.setText(dateFormat);
 
-        catLoad(modPdf,holder);
-        pdfFromUrlLoad(modPdf,holder);
-        pdfSizeLoad(modPdf,holder);
+        MyApplication.catLoad("" + catId, holder.bookCatText);
+
+        MyApplication.pdfFromUrlSinglePageLoad("" + pdfUrl, "" + title, holder.viewPdf, holder.progBar);
+
+        MyApplication.pdfSizeLoad("" + pdfUrl, "" + title, holder.bookSize);
 
         holder.additionalInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,134 +112,10 @@ public class Book_Admin_Adapter extends RecyclerView.Adapter<Book_Admin_Adapter.
                             con.startActivity(intent);
                         }
                         else if(i == 1){
-                            deleteBook(modPdf, holder);
+                            MyApplication.deleteBook(con, "" + bookId, "" + bookUrl, "" + bookTitle);
                         }
                     }
                 }).show();
-    }
-
-    private void deleteBook(Pdf_Model modPdf, PdfHolderAdmin holder) {
-        String bookId = modPdf.getId();
-        String bookUrl = modPdf.getUrl();
-        String bookTitle = modPdf.getTitle();
-        proDia.setMessage("Deleting: " + bookTitle);
-        proDia.show();
-        StorageReference sRef = FirebaseStorage.getInstance().getReferenceFromUrl(bookUrl);
-        sRef.delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Books");
-                        dRef.child(bookId).removeValue()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        proDia.dismiss();
-                                        Toast.makeText(con, "Your book has been deleted successfully!", Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        proDia.dismiss();
-                                        Toast.makeText(con, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        proDia.dismiss();
-                        Toast.makeText(con, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void pdfSizeLoad(Pdf_Model modPdf, PdfHolderAdmin holder) {
-        String pdfUrl = modPdf.getUrl();
-        StorageReference sRef = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
-        sRef.getMetadata()
-                .addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
-                    @Override
-                    public void onSuccess(StorageMetadata storageMetadata) {
-                        double bytes = storageMetadata.getSizeBytes();
-                        double kb = bytes/1024;
-                        double mb = kb/1024;
-                        if(mb >= 1) {
-                            holder.bookSize.setText(String.format("%.2f", mb) + "MB");
-                        }
-                        else if(kb >= 1) {
-                            holder.bookSize.setText(String.format("%.2f", kb) + "KB");
-                        }
-                        else {
-                            holder.bookSize.setText(String.format("%.2f", bytes) + "bytes");
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(con, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void pdfFromUrlLoad(Pdf_Model modPdf, PdfHolderAdmin holder) {
-        String pdfUrl = modPdf.getUrl();
-        StorageReference sRef = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
-        sRef.getBytes(PDF_MAX_BYTES)
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        holder.viewPdf.fromBytes(bytes).pages(0).spacing(0).swipeHorizontal(false)
-                                .enableSwipe(false).onError(new OnErrorListener() {
-                            @Override
-                            public void onError(Throwable t) {
-                                holder.progBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(con, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                                .onPageError(new OnPageErrorListener() {
-                                    @Override
-                                    public void onPageError(int page, Throwable t) {
-                                        holder.progBar.setVisibility(View.INVISIBLE);
-                                        Toast.makeText(con, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .onLoad(new OnLoadCompleteListener() {
-                                    @Override
-                                    public void loadComplete(int nbPages) {
-                                        holder.progBar.setVisibility(View.INVISIBLE);
-                                    }
-                                })
-                                .load();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(con, "Failed to get Pdf Url. Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void catLoad(Pdf_Model modPdf, PdfHolderAdmin holder) {
-        String catId = modPdf.getCategoryId();
-        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Categories");
-        dRef.child(catId)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String cat = "" + snapshot.child("category").getValue();
-                        holder.bookCatText.setText(cat);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
     }
 
     @Override

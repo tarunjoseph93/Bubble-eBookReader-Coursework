@@ -2,11 +2,11 @@ package com.tj.bubble_ebookreader_coursework.models;
 
 public class Pdf_Model {
     String uid, id, title, description, categoryId, url;
-    long timestamp;
+    long timestamp, viewsCount, downloadsCount;
 
     public Pdf_Model() {}
 
-    public Pdf_Model(String uid, String id, String title, String description, String categoryId, String url, long timestamp) {
+    public Pdf_Model(String uid, String id, String title, String description, String categoryId, String url, long timestamp, long viewsCount, long downloadsCount) {
         this.uid = uid;
         this.id = id;
         this.title = title;
@@ -14,6 +14,8 @@ public class Pdf_Model {
         this.categoryId = categoryId;
         this.url = url;
         this.timestamp = timestamp;
+        this.viewsCount = viewsCount;
+        this.downloadsCount = downloadsCount;
     }
 
     public String getUid() {
@@ -70,5 +72,21 @@ public class Pdf_Model {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public long getViewsCount() {
+        return viewsCount;
+    }
+
+    public void setViewsCount(long viewsCount) {
+        this.viewsCount = viewsCount;
+    }
+
+    public long getDownloadsCount() {
+        return downloadsCount;
+    }
+
+    public void setDownloadsCount(long downloadsCount) {
+        this.downloadsCount = downloadsCount;
     }
 }
