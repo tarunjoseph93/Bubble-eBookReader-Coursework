@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_white"
     android:padding="20dp"
-    tools:context=".MainActivity">
+    tools:context=".pages.MainActivity">
 
     <ImageView
         android:id="@+id/bubble_icon"

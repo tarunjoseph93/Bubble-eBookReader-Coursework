@@ -1,7 +1,5 @@
 package com.tj.bubble_ebookreader_coursework.adapters;
 
-import static com.tj.bubble_ebookreader_coursework.Constants.PDF_MAX_BYTES;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,28 +13,14 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.listener.OnErrorListener;
-import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
-import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
-import com.google.firebase.storage.StorageReference;
-import com.tj.bubble_ebookreader_coursework.BookDetailPage;
+import com.tj.bubble_ebookreader_coursework.pages.BookDetailPage;
 import com.tj.bubble_ebookreader_coursework.MyApplication;
-import com.tj.bubble_ebookreader_coursework.PdfEditPage;
+import com.tj.bubble_ebookreader_coursework.pages.PdfEditPage;
 import com.tj.bubble_ebookreader_coursework.databinding.CustomRowsForPdfAdminBinding;
 import com.tj.bubble_ebookreader_coursework.filters.Pdf_Filter;
 import com.tj.bubble_ebookreader_coursework.models.Pdf_Model;

@@ -1,4 +1,4 @@
-package com.tj.bubble_ebookreader_coursework;
+package com.tj.bubble_ebookreader_coursework.pages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

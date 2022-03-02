@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.tj.bubble_ebookreader_coursework.PdfListAdminPage;
+import com.tj.bubble_ebookreader_coursework.pages.PdfListAdminPage;
 import com.tj.bubble_ebookreader_coursework.filters.Category_Filter;
 import com.tj.bubble_ebookreader_coursework.models.Category_Model;
 import com.tj.bubble_ebookreader_coursework.databinding.CustomRowsForCategoryAdminBinding;

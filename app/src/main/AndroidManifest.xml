@@ -16,40 +16,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".PdfViewPage"
+            android:name=".pages.PdfViewPage"
             android:exported="false" />
         <activity
-            android:name=".BookDetailPage"
+            android:name=".pages.BookDetailPage"
             android:exported="false" />
         <activity
-            android:name=".PdfEditPage"
+            android:name=".pages.PdfEditPage"
             android:exported="false" />
         <activity
-            android:name=".PdfListAdminPage"
+            android:name=".pages.PdfListAdminPage"
             android:exported="false" />
         <activity
-            android:name=".PdfAddPage"
+            android:name=".pages.PdfAddPage"
             android:exported="false" />
         <activity
-            android:name=".AddBookCategory"
+            android:name=".pages.AddBookCategory"
             android:exported="false" />
         <activity
-            android:name=".AdminDashboard"
+            android:name=".pages.AdminDashboard"
             android:exported="false" />
         <activity
-            android:name=".UserDashboard"
+            android:name=".pages.UserDashboard"
             android:exported="false" />
         <activity
-            android:name=".RegistrationPage"
+            android:name=".pages.RegistrationPage"
             android:exported="false" />
         <activity
-            android:name=".LoginPage"
+            android:name=".pages.LoginPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".pages.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".pages.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
