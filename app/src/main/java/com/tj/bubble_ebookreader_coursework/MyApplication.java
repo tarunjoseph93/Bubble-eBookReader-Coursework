@@ -5,6 +5,7 @@ import static com.tj.bubble_ebookreader_coursework.Constants.PDF_MAX_BYTES;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -30,6 +31,8 @@ import com.google.firebase.storage.StorageReference;
 import com.tj.bubble_ebookreader_coursework.adapters.Book_Admin_Adapter;
 import com.tj.bubble_ebookreader_coursework.models.Pdf_Model;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -182,6 +185,78 @@ public class MyApplication extends Application {
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
                         ref.child(bookId)
                                 .updateChildren(hMap);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public static void bookDownload(Context con, String bookId, String bookTitle, String bookUrl) {
+        String nameWithExtension = bookTitle + ".pdf";
+
+        ProgressDialog proDia = new ProgressDialog(con);
+        proDia.setTitle("Gotta wait...");
+        proDia.setMessage("Downloading " + nameWithExtension + "!");
+        proDia.setCanceledOnTouchOutside(false);
+        proDia.show();
+
+        StorageReference sRef = FirebaseStorage.getInstance().getReferenceFromUrl(bookUrl);
+        sRef.getBytes(PDF_MAX_BYTES)
+                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        downloadedBookSave(con, proDia, bytes, nameWithExtension, bookId);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        proDia.dismiss();
+                        Toast.makeText(con, "Failed to download the file. Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private static void downloadedBookSave(Context con, ProgressDialog proDia, byte[] bytes, String nameWithExtension, String bookId) {
+        try {
+            File downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            downloadsFolder.mkdirs();
+            String filePath = downloadsFolder.getPath() + "/" + nameWithExtension;
+            FileOutputStream fOut = new FileOutputStream(filePath);
+            fOut.write(bytes);
+            fOut.close();
+            Toast.makeText(con, "Saved to Downloads Folder!", Toast.LENGTH_SHORT).show();
+            proDia.dismiss();
+
+            bookDownloadIncrementation(bookId);
+        }
+        catch (Exception e) {
+            proDia.dismiss();
+            Toast.makeText(con, "Failed to download file. Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private static void bookDownloadIncrementation(String bookId) {
+        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Books");
+        dRef.child(bookId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String downloadsCount = "" + snapshot.child("downloadsCount").getValue();
+                        if(downloadsCount.equals("") || downloadsCount.equals("null")) {
+                            downloadsCount = "0";
+                        }
+
+                        long newDownloadsCount = Long.parseLong(downloadsCount) + 1;
+
+                        HashMap<String, Object> hMap = new HashMap<>();
+                        hMap.put("downloadsCount", newDownloadsCount);
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+                        ref.child(bookId).updateChildren(hMap);
                     }
 
                     @Override

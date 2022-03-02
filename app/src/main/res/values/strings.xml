@@ -41,4 +41,5 @@
     <string name="download_count">Download Count</string>
     <string name="open_book">Open</string>
     <string name="read_book">Read Book</string>
+    <string name="download">Download</string>
 </resources>
