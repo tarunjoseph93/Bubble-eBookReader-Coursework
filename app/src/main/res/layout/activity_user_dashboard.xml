@@ -8,7 +8,7 @@
     tools:context=".pages.UserDashboard">
 
     <RelativeLayout
-        android:id="@+id/adminHighlightBar"
+        android:id="@+id/userHighlightBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/shape_highlight_bar_2">
@@ -44,5 +44,24 @@
 
 
     </RelativeLayout>
+    
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/userTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userHighlightBar"
+        android:layout_margin="10dp"
+        app:tabTextColor="@color/background_white"
+        android:background="@color/background_white"
+        app:tabBackground="@drawable/custom_tab_selector"
+        app:tabIndicator="@color/transparent"
+        app:tabMode="scrollable"
+        app:tabUnboundedRipple="false"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/userViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userTabLayout" />
 
 </RelativeLayout>

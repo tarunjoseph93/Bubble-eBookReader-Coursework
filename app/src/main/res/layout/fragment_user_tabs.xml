@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".UserTabsFragment">
+
+    <EditText
+        android:id="@+id/userBookSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/background_white"
+        android:drawableStart="@drawable/ic_baseline_search_purple"
+        android:hint="@string/book_search_hint"
+        android:padding="10dp"
+        android:textColorHint="@color/gray_custom"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/booksUserRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stackFromEnd="true"
+        app:reverseLayout="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/custom_rows_for_pdf_user"/>
+
+</LinearLayout>
