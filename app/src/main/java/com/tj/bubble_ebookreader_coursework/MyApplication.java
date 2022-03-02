@@ -20,6 +20,7 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -114,7 +115,7 @@ public class MyApplication extends Application {
                 });
     }
 
-    public static void pdfFromUrlSinglePageLoad(String pdfUrl, String pdfTitle, PDFView viewPdf, ProgressBar progBar) {
+    public static void pdfFromUrlSinglePageLoad(String pdfUrl, String pdfTitle, PDFView viewPdf, ProgressBar progBar, TextView pageCountTextView) {
         StorageReference sRef = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
         sRef.getBytes(PDF_MAX_BYTES)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -137,6 +138,9 @@ public class MyApplication extends Application {
                                     @Override
                                     public void loadComplete(int nbPages) {
                                         progBar.setVisibility(View.INVISIBLE);
+                                        if(pageCountTextView != null) {
+                                            pageCountTextView.setText("" + nbPages);
+                                        }
                                     }
                                 })
                                 .load();
@@ -264,5 +268,56 @@ public class MyApplication extends Application {
 
                     }
                 });
+    }
+
+    public static void addToFavourite(Context con, String bookId) {
+        FirebaseAuth fireAuth = FirebaseAuth.getInstance();
+        if(fireAuth.getCurrentUser() == null) {
+            Toast.makeText(con, "You are not logged in. Please login to favourite this book!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            long timestamp = System.currentTimeMillis();
+            HashMap<String, Object> hMap = new HashMap<>();
+            hMap.put("bookId", bookId);
+            hMap.put("timestamp", timestamp);
+
+            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Accounts");
+            dRef.child(fireAuth.getUid()).child("Favourites").child(bookId).setValue(hMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(con, "This book has been added to your Favourites List!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(con, "Could not add this book to your Favourites List! Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    public static void removeFromFavourite(Context con, String bookId) {
+        FirebaseAuth fireAuth = FirebaseAuth.getInstance();
+        if(fireAuth.getCurrentUser() == null) {
+            Toast.makeText(con, "You are not logged in. Please login to favourite this book!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference("Accounts");
+            dRef.child(fireAuth.getUid()).child("Favourites").child(bookId).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(con, "This book has been added to your Favourites List!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(con, "Could not add this book to your Favourites List! Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }

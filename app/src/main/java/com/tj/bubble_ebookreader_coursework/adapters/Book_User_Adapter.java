@@ -57,7 +57,7 @@ public class Book_User_Adapter extends RecyclerView.Adapter<Book_User_Adapter.Ho
         holder.bookDescText.setText(desc);
         holder.bookDate.setText(date);
 
-        MyApplication.pdfFromUrlSinglePageLoad("" + pdfUrl, "" + title, holder.viewPdf, holder.progBarPdf);
+        MyApplication.pdfFromUrlSinglePageLoad("" + pdfUrl, "" + title, holder.viewPdf, holder.progBarPdf, null);
         MyApplication.catLoad("" + catId, holder.bookCatText);
         MyApplication.pdfSizeLoad("" + pdfUrl, "" + title, holder.bookSize);
 

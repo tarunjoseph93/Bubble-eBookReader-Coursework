@@ -67,7 +67,7 @@ public class Book_Admin_Adapter extends RecyclerView.Adapter<Book_Admin_Adapter.
 
         MyApplication.catLoad("" + catId, holder.bookCatText);
 
-        MyApplication.pdfFromUrlSinglePageLoad("" + pdfUrl, "" + title, holder.viewPdf, holder.progBar);
+        MyApplication.pdfFromUrlSinglePageLoad("" + pdfUrl, "" + title, holder.viewPdf, holder.progBar, null);
 
         MyApplication.pdfSizeLoad("" + pdfUrl, "" + title, holder.bookSize);
 

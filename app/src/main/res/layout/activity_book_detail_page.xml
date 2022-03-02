@@ -53,8 +53,8 @@
 
                 <RelativeLayout
                     android:id="@+id/pdfRelativeLayout"
-                    android:layout_width="100dp"
-                    android:layout_height="140dp"
+                    android:layout_width="110dp"
+                    android:layout_height="150dp"
                     android:layout_marginEnd="5dp"
                     android:background="@color/gray_custom2">
 
@@ -66,7 +66,7 @@
                     <ProgressBar
                         android:id="@+id/progBarPdf"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </RelativeLayout>
 
@@ -204,6 +204,30 @@
 
                     </TableRow>
 
+                    <TableRow
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/pageCountLabelTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/pages"
+                            android:textColor="@color/background_white"/>
+
+                        <TextView
+                            android:id="@+id/pageCountTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:text="@string/not_available"
+                            android:textColor="@color/background_white"/>
+
+                    </TableRow>
+
                 </TableLayout>
 
             </RelativeLayout>
@@ -230,7 +254,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bookOpenButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_baseline_open_in_full_white"
             android:text="@string/open_book"
@@ -240,10 +264,20 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bookDownloadButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_baseline_file_download_white"
             android:text="@string/download"
+            android:textColor="@color/background_white"
+            android:background="@color/standard_bubble_color"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bookFavouriteButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_baseline_favorite_selected_white"
+            android:text="@string/fav"
             android:textColor="@color/background_white"
             android:background="@color/standard_bubble_color"/>
 

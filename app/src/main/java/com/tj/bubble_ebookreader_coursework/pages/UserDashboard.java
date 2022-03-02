@@ -45,7 +45,8 @@ public class UserDashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fireAuth.signOut();
-                userCheck();
+                startActivity(new Intent(UserDashboard.this, MainActivity.class));
+                finish();
             }
         });
     }
@@ -123,8 +124,7 @@ public class UserDashboard extends AppCompatActivity {
     private void userCheck() {
         FirebaseUser fireUser = fireAuth.getCurrentUser();
         if(fireUser == null) {
-            startActivity(new Intent(UserDashboard.this, MainActivity.class));
-            finish();
+            bind.userHead.setText("Guest User");
         }
         else {
             String uEmail = fireUser.getEmail();

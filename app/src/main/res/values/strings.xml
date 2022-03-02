@@ -42,6 +42,9 @@
     <string name="open_book">Open</string>
     <string name="read_book">Read Book</string>
     <string name="download">Download</string>
+    <string name="pages">Pages</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fav">Add Favourite</string>
+    <string name="fav_remove">Remove Favourite</string>
 </resources>
